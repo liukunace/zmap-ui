@@ -1,7 +1,7 @@
 {
   "name": "zmap-ui",
   "description": "A components of pc base on vue2.X",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "author": "lewk <liukunace@163.com>",
   "main": "dist/zmap.js",
   "license": "MIT",

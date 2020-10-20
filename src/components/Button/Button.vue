@@ -51,7 +51,9 @@ export default {
     },
     methods: {
         clickBtn(ev) {
-            this.$emit('click', ev)
+            this.$emit('click', ev);
+            alert("统一日志收集体系blabla;");
+            ev.preventDefault();
         },
     },
 }

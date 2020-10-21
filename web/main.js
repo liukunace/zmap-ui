@@ -1,8 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
-import OlMapWeb from './OlMapWeb.vue'
 import '@/assets/index.scss'
-import ZmapVue from '@'
+import ZmapUI from '@'
 
 import fontawesome from '@fortawesome/fontawesome'
 import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
@@ -16,7 +15,15 @@ fontawesome.library.add(brands)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
-Vue.use(ZmapVue)
+import Defined from '@/components/zmapConfig.js'
+Vue.prototype.$def = Defined
+
+import ol from '@/ol/ol.js';
+import '@/ol/ol.css'
+import '@/ol/ole.css'
+Vue.prototype.$ol = ol;
+
+Vue.use(ZmapUI)
 new Vue({
   el: '#app',
   render: h => h(App)

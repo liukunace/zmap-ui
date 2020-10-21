@@ -2,7 +2,12 @@
   <div id="app">
     <img src="@/assets/zhiyun.png">
     <h1>{{ msg }}</h1>
-    <div class="pb48 underline">
+    <div class="zm underline" style="width: 1200px;">
+      <zmap-map @click="mapClickTest(this)"  ref="baseMap" overView="bottom-right">
+      </zmap-map>
+    </div>
+
+    <div class="zm underline">
       <h2>一.按钮组件</h2>
       <p>1.按钮样式：type</p>
       <zmap-button>default</zmap-button>
@@ -26,7 +31,7 @@
       <zmap-button type="warning" isDisabled>warning</zmap-button>
       <zmap-button type="info" isDisabled>info</zmap-button>
     </div>
-    <div class="pt48 underline">
+    <div class="zm underline">
       <h2>二.弹窗组件</h2>
       <p>1.弹窗样式</p>
       <zmap-button @click="show1=true">default</zmap-button>
@@ -70,48 +75,53 @@
         @on-ok="show4=false"
         @on-cancel="show4=false"
         :size="size"
-        :isShow="show4"></zmap-modal>
+        :isShow="show1"></zmap-modal>
       <p></p>
     </div>
-    <div class="pt48 underline">
+    <div class="zm underline">
       <h2>三.自定义选择器</h2>
       <p>1.多选选择器</p>
-      <zmap-select v-model="data" multiple class="blaba">
-        <zmap-option label="测试1" value="test"></zmap-option>
+      <zmap-select v-model="data" multiple class="wid115" >
+        <zmap-option label="测试1" value="test1"></zmap-option>
         <zmap-option label="测试2" value="test2"></zmap-option>
         <zmap-option label="测试3" value="test3"></zmap-option>
-        <zmap-option label="测试4" value="test4"></zmap-option>
         <zmap-option label="测试5" value="test5"></zmap-option>
       </zmap-select>
       <p></p>
     </div>
+
   </div>
 </template>
 
 <script>
-// import Button from '@/components/Button/Button'
-// import Modal from '@/components/Modal/Modal'
+
+import Tile from "ol/layer/Tile";
+import OSM from "ol/source/OSM";
+import Style from "ol/style/Style";
+import Circle from "ol/style/Circle";
+import Fill from "ol/style/Fill";
+import Stroke from "ol/style/Stroke";
+
 export default {
   name: 'app',
-  // components: {
-  //   zmapButton: Button,
-  //   zmapModal: Modal,
-  // },
+  components: {
+  },
   data () {
     return {
       msg: '欢迎使用 zmap-ui，智耘科技',
       show1: false,
-      show2: false,
-      show3: false,
-      show4: false,
       size: '',
-      data: ['test'],
+      data: ['test1'],
     }
   },
   methods: {
     showSize(item) {
-      this.size = item
-      this.show4 = true
+      this.size = item;
+      this.show1 = true
+    },
+    mapClickTest(e){
+      let map=this.$def.map;
+      console.log("外部调用测试信息：outer info");
     }
   }
 }
@@ -120,33 +130,28 @@ export default {
 <style>
 #app {
   text-align: center;
-  color: #2c3e50;
+  color: rgba(120, 163, 60, 0.9);
   margin-top: 60px;
   padding-bottom: 200px;
 }
 
-.blaba{
-  width: 120px;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
+.wid115{
+  width: 115px;
 }
 
 a {
-  color: #42b983;
+  color: #5575b9;
 }
-.pt48, .py48 {
-  padding-top: 48px;
+
+.zm, .zm30 {
+  padding-top: 30px;
 }
-.pb48, py48 {
-  padding-bottom: 48px;
+
+.zmb, zmb20 {
+  padding-bottom: 20px;
 }
-.underline {border-bottom: 1px solid #ccc;}
+
+.underline {
+  border-bottom: 1px solid #b9bfcc;
+}
 </style>
